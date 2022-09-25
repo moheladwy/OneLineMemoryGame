@@ -14,24 +14,25 @@ public:
     OneLineMemory();
     ~OneLineMemory();
 
-    void setPlayerName(const string&, const string&);
-    void drowBoard(const string&, unsigned const int&);
-    void updateChoicesList(unsigned const int&, unsigned const int&);
-    void printWinner();
     void currentTurn(Player&);
     void clearScreen();
-    void getNumbers(unsigned int&, unsigned int&);
-
-    string getPlayerName(const string&);
-    string getChoice();
-    
     bool isGameEnded();
-    unsigned int setChoice(const string&);
-    Player& getPlayer(unsigned const int&);
+    
 private:
     Player player1, player2;
     
     void shuffleLetterVector();
+    void setPlayerName(const string&, const string&);
+    void drowBoard(const string&, unsigned const int&);
+    void getNumbers(unsigned int&, unsigned int&);
+    void updateChoicesList(unsigned const int&, unsigned const int&);
+    void printWinner();
+
+    string getPlayerName(const string&);
+    string getChoice(const string&);
+
+    unsigned int setChoice(const string&);
+    Player& getPlayer(unsigned const int&);
 
     bool isValidName(const string&);
     bool isValidChoice(const string&);
