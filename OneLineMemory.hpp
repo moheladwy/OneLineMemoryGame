@@ -20,7 +20,7 @@ public:
     void printWinner();
     void currentTurn(Player&);
     void clearScreen();
-    vector<unsigned int> getNumbers();
+    void getNumbers(unsigned int&, unsigned int&);
 
     string getPlayerName(const string&);
     string getChoice();

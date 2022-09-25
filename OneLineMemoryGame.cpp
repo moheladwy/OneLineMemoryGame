@@ -131,15 +131,13 @@ bool OneLineMemory::isGameEnded() {
 	return true;
 }
 //---------------------------------------------------------------------------
-vector<unsigned int> OneLineMemory::getNumbers() {
-	unsigned int firstNumber = setChoice(getChoice());
-	unsigned int secondNumber = setChoice(getChoice());
+void OneLineMemory::getNumbers(unsigned int& firstNumber, unsigned int& secondNumber) {
+	firstNumber = setChoice(getChoice());
+	secondNumber = setChoice(getChoice());
 	if (firstNumber == secondNumber)
 		throw invalid_argument("The second number must be different from the first one, Try again!");
 	if (isChoicesTaken(firstNumber, secondNumber))
 		throw invalid_argument("The number/s you enterd was taken before, Try again and choice anthor one!");
-	vector<unsigned int> numbers{ firstNumber, secondNumber };
-	return numbers;
 }
 //---------------------------------------------------------------------------
 Player& OneLineMemory::getPlayer(unsigned const int& number) {
@@ -150,17 +148,16 @@ Player& OneLineMemory::getPlayer(unsigned const int& number) {
 //---------------------------------------------------------------------------
 void OneLineMemory::currentTurn(Player &player) {
 	drowBoard(player.getPlayerName(), player.getPlayerScore());
-	vector<unsigned int> numbers;
+	unsigned int firstNumber, secondNumber;
 	while (true) {
 		try {
-			numbers = getNumbers();
+			getNumbers(firstNumber, secondNumber);
 			break;
 		}
 		catch (const exception& e) {
 			cerr << e.what() << endl;
 		}
 	}
-	unsigned int firstNumber = numbers[0], secondNumber = numbers[1];
 	if (isLettersEquals(firstNumber, secondNumber)) {
 		cout << "Correct Choices!" << endl;
 		updateChoicesList(firstNumber, secondNumber);
